@@ -74,9 +74,9 @@ OPTIONAL:
 
 1. Create the Network layer: (VPC, Subnet, RT, IGW,..)
     - Call the network module from your tf code.
-        source: "git@github.com:studiographene/tf-modules.git//network"
+        source: "git@github.com:nohamkumar/aws-vpc-subnet.git"
     - Apply the Network module.
-    for more, refer: https://github.com/studiographene/tf-modules/blob/feature/new/ecs-fargate/network/README.md
+    for more, refer: https://github.com/nohamkumar/aws-vpc-subnet/blob/main/README.md
 2. Call the "alb-ecs" module from your tf code.
 3. Specifying the Variable Inputs along the module call.
 4. Apply.
@@ -90,7 +90,7 @@ provider "aws" {
 }
 
 module "network" {
-  source      = "git@github.com:studiographene/tf-modules.git//network"
+  source      = "git@github.com:nohamkumar/aws-vpc-subnet.git"
   cidr_block  = "10.0.0.0/16"
   namespace   = "sg"
   environment = "dev"
@@ -98,7 +98,7 @@ module "network" {
 
 module "alb" {
   
-  source                   = "git@github.com:studiographene/tf-modules.git//alb-ecs"
+  source                   = "git@github.com:nohamkumar/aws-alb-for-ecs.git"
   namespace                = "stg"
   environment              = "dev"
   vpc_id                   = module.network.vpc_id
